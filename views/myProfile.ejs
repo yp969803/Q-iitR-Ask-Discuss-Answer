@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Q-iitR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        body{
+        height: 100vh;
+        background-color:rgb(236, 153, 236);
+      }
+    </style>    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Q-iitR</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="/">Home</a>
+              </li>
+          
+              
+              
+            </ul>
+            
+            <form action="/auth/logout"    method="post">
+                <button type="submit" class="btn btn-secondary mx-2">Logout</button>
+           </form>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+       <div class="conatiner">
+        <h5 class="text-muted mb-2 display-5 text-center">My Details</h5>
+        <div class="container p-3 mb-2 bg-light text-dark border border-danger rounded">
+            <h5 class="text-muted mb-2 h3 text-primary ">ID- <%=username%></h5>
+            <h5 class="text-muted mb-2 h3 text-primary">Name- <%=userData.name%></h5>
+            <h5 class="text-muted mb-2 h3 text-primary ">Bio- <%=userData.bio%></h5>
+        </div>
+        <a href="/profile/edit" class="btn btn-primary"">Edit</a>
+        
+       </div>
+       <div class="container">
+        <div class="container">
+            <h5 class="text-muted mb-2 display-5 text-center">My Questions</h5>
+            <div class="container" >
+              <%questions.reverse().forEach(element=>{%>
+                <div class="card mt-4">
+                  <div class="card-body ">
+                      <h4 class="card-title  mb-2 "><%=element.question%></h4>
+                      <div class="card-subtitle text-muted mt-2"><%=element.date.toLocaleString('en-IN')%></div>
+                      <a class="btn btn-outline-primary d-inline" href='/question/showquestion/<%=element.id%>'>ReadMore</a>
+                      <form action="/question/delete/<%=element.id%>" class="d-inline" method="post">
+                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                      </form>
+                      <div class="container">
+                        <form action="/question/editquestion/<%=element.id%>" method="post">
+                            <div class="mb-3">
+                              <label for="question" class="form-label">Edit:</label>
+                              <input type="text" class="form-control" id="question" name="question" aria-describedby="emailHelp">
+                              
+                            </div>
+                           
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                          </form>
+                      </div>
+                  </div>
+                  
+              </div>
+              <%}) %>
+             </div>
+          
+          </div>
+       </div>
+
+   </div>
+
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
